@@ -36,21 +36,25 @@ const Hero = () => {
     modules={[Autoplay, Pagination, Navigation]}
     loop={true}
     autoplay={{
-      delay: 3000, // Delay in milliseconds
-      disableOnInteraction: false, // Keep autoplay even after user interaction
+      delay: 3000, 
+      disableOnInteraction: false, 
     }}
     pagination={{ clickable: true }}
     navigation
-    spaceBetween={20}
+    spaceBetween={0}
     slidesPerView={1}
     className="w-full"
   >
       {slides.map((slide, index) => (
         <SwiperSlide key={index}>
           <div
-            className="relative flex flex-col items-center justify-center h-[400px] sm:h-[500px] bg-cover bg-center"
-            style={{ backgroundImage: `url(${slide.image})` }}
-          >
+            className="relative flex flex-col items-center justify-center h-[50vh] md:h-[70vh] sm:h-[60vh] lg:h-[80vh] bg-cover bg-center">
+            {/*  style={{ backgroundImage: `url(${slide.image})` }} */}
+              <img 
+              src={slide.image} 
+              alt={`Slide ${index + 1}`} 
+              className="w-full h-full object-contain"
+            />
           
           </div>
         </SwiperSlide>
