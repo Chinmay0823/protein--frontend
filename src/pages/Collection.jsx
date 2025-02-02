@@ -59,25 +59,27 @@ const Collection = () => {
   }, [sortType]);
 
   return (
-    <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
+    <div className="flex flex-col sm:flex-row gap-6 sm:gap-12 pt-10 border-t">
+
       {/* Filter Options */}
-      <div className="min-w-60">
+      <div className="min-w-64 sm:min-w-72 bg-white p-6 shadow-lg rounded-lg">
         <p
           onClick={() => setShowFilter(!showFilter)}
-          className="my-2 text-xl flex items-center cursor-pointer gap-2"
+          className="text-xl cursor-pointer flex items-center justify-between gap-2 font-semibold text-gray-700 mb-5"
         >
           FILTERS
           <img
-            className={`h-3 sm:hidden ${showFilter ? 'rotate-90' : ''}`}
+            className={`h-4 transition-transform ${showFilter ? 'rotate-90' : ''}`}
             src={assets.dropdown_icon}
-            alt=""
+            alt="Toggle filter"
           />
         </p>
+
         {/* Category Filter */}
-        <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? '' : 'hidden'} sm:block`}>
-          <p className="mb-3 text-sm font-medium">CATEGORIES</p>
+        <div className={`border-t pt-5 ${showFilter ? '' : 'hidden'} sm:block`}>
+          <p className="text-sm font-medium text-gray-600 mb-3">CATEGORIES</p>
           <select
-            className="border p-2 text-sm"
+            className="w-full p-2 border-2 border-gray-300 rounded-md text-sm"
             value={category}
             onChange={e => setCategory(e.target.value)}
           >
@@ -87,11 +89,12 @@ const Collection = () => {
             <option value="Muscle Builders">Muscle Builders</option>
           </select>
         </div>
+
         {/* SubCategory Filter */}
-        <div className={`border border-gray-300 pl-5 py-3 my-5 ${showFilter ? '' : 'hidden'} sm:block`}>
-          <p className="mb-3 text-sm font-medium">TYPE</p>
+        <div className={`border-t pt-5 ${showFilter ? '' : 'hidden'} sm:block`}>
+          <p className="text-sm font-medium text-gray-600 mb-3">TYPE</p>
           <select
-            className="border p-2 text-sm"
+            className="w-full p-2 border-2 border-gray-300 rounded-md text-sm"
             value={subCategory}
             onChange={e => setSubCategory(e.target.value)}
           >
@@ -106,14 +109,15 @@ const Collection = () => {
         </div>
       </div>
 
-      {/* Right Side */}
+      {/* Right Side: Products */}
       <div className="flex-1">
-        <div className="flex justify-between text-base sm:text-2xl mb-4">
+        <div className="flex justify-between items-center mb-5">
           <Title text1={'ALL'} text2={'COLLECTIONS'} />
+          
           {/* Product Sort */}
           <select
             onChange={e => setSortType(e.target.value)}
-            className="border-2 border-gray-300 text-sm px-2"
+            className="border-2 border-gray-300 text-sm px-4 py-2 rounded-md shadow-md"
           >
             <option value="relavent">Sort by: Relevant</option>
             <option value="low-high">Sort by: Low to High</option>
@@ -121,10 +125,16 @@ const Collection = () => {
           </select>
         </div>
 
-        {/* Map Products */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
+        {/* Products Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filterProducts.map((item, index) => (
-            <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image} />
+            <ProductItem
+              key={index}
+              name={item.name}
+              id={item._id}
+              price={item.price}
+              image={item.image}
+            />
           ))}
         </div>
       </div>
